@@ -1,8 +1,9 @@
-version: '3.1'
+version: '1.0.0'
 
 services:
   springboot:
     image: dineshdockerpractice/spring-boot-mongo:${buildNumber} #Here I'm getting image build number from Jenkins build Number environment variable automatically.
+    container_name: springboot #Conatiner Name
     restart: always # This will be ignored if we deploy in docker swarm
     environment: 
     - MONGO_DB_HOSTNAME=mongo
@@ -27,6 +28,7 @@ services:
     
   mongodb:  #This is mongodb database service creating as only 1 container with no volumes currently. 
     image: mongo  #Here image name should be equal to application host environment host name.
+    container_name: springboot-mongodb
     environment:
     - MONGO_INITDB_ROOT_USERNAME=devdb
     - MONGO_INITDB_ROOT_PASSWORD=devdb1234
