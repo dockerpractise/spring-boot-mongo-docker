@@ -25,7 +25,7 @@ services:
     - mongonetwork
     working_dir: /opt/app
     
-  mongodb:  #This is mongodb database service creating as only 1 container with no volumes currently. 
+  mongodb:  
     image: mongo  #Here image name should be equal to application host environment host name.
     environment:
     - MONGO_INITDB_ROOT_USERNAME=devdb
