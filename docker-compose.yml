@@ -2,7 +2,7 @@ version: '1.0.0'
 
 services:
   springboot
-    image: dineshdockerpractice/spring-boot-mongo:${buildNumber} #Here I'm getting image build number from Jenkins build Number environment variable automatically.
+    image: dineshdockerpractice/spring-boot-mongo:${buildNumber} 
     container_name: springboot #Conatiner Name
     restart: always
     environment: 
