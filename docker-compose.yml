@@ -25,6 +25,7 @@ services:
     networks:
     - mongonetwork
     working_dir: /opt/app
+    
   mongodb  #This is mongodb database service creating as only 1 container with no volumes currently. 
     image: mongo  #Here image name should be equal to application host environment host name.
     container_name: springboot-mongodb
@@ -34,6 +35,7 @@ services:
     restart: always
     networks:
     - mongonetwork
+    
 networks:
   mongonetwork:
     external: true
