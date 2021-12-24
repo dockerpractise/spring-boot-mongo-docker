@@ -3,7 +3,6 @@ version: '1.0.0'
 services:
   springboot
     image: dineshdockerpractice/spring-boot-mongo:${buildNumber} 
-    container_name: springboot #Conatiner Name
     restart: always
     environment: 
     - MONGO_DB_HOSTNAME=mongo
