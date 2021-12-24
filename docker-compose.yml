@@ -1,22 +1,20 @@
-version: '3.1'
+version: '1.0.0'
 
 services:
   springboot:
-    image: dockerhandson/spring-boot-mongo:latest
+    image: dineshdockerpractice/spring-boot-mongo:${buildNumber} #Here I'm getting image build number from Jenkins build Number environment variable automatically.
+    container_name: springboot #Conatiner Name
     restart: always # This will be ignored if we deploy in docker swarm
-    environment:
+    environment: 
     - MONGO_DB_HOSTNAME=mongo
     - MONGO_DB_USERNAME=devdb
-    - MONGO_DB_PASSWORD=devdb123
+    - MONGO_DB_PASSWORD=devdb1234
     ports:
       - 8080:8080
-    working_dir: /opt/app
     depends_on:
       - mongo
-    networks:
-    - springappnetwork  
-    deploy:  # This will be considered only in docker swarm.
-      replicas: 2
+    deploy:
+      replicas: 3 #Creating springboot application image as 3 containers with service name as springboot.
       update_config:
         parallelism: 1
         delay: 20s
@@ -24,22 +22,20 @@ services:
         condition: on-failure
         delay: 10s
         max_attempts: 5
-        
-  mongo:
-    image: mongo
+    networks:
+    - mongonetwork
+    working_dir: /opt/app
+    
+  mongodb:  #This is mongodb database service creating as only 1 container with no volumes currently. 
+    image: mongo  #Here image name should be equal to application host environment host name.
+    container_name: springboot-mongodb
     environment:
     - MONGO_INITDB_ROOT_USERNAME=devdb
-    - MONGO_INITDB_ROOT_PASSWORD=devdb123
-    volumes:
-      - mongodb:/data/db
+    - MONGO_INITDB_ROOT_PASSWORD=devdb1234
     restart: always
     networks:
-    - springappnetwork
-    
-volumes:
-  mongodb:
-    external: true
+    - mongonetwork
     
 networks:
-  springappnetwork:
+  mongonetwork:
     external: true
