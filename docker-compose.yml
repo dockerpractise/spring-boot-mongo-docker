@@ -2,14 +2,14 @@ version: '3.1'
 
 services:
   springboot:
-    image: dineshdockerpractice/spring-boot-mongo:5 #Here I'm getting image build number from Jenkins build Number environment variable automatically.
+    image: dineshdockerpractice/spring-boot-mongo:6 #Here I'm getting image build number from Jenkins build Number environment variable automatically.
     restart: always # This will be ignored if we deploy in docker swarm
     environment: 
     - MONGO_DB_HOSTNAME=mongo
     - MONGO_DB_USERNAME=devdb
     - MONGO_DB_PASSWORD=devdb123
     ports:
-      - 9090:9090
+      - 9090:8080
     depends_on:
       - mongo
     deploy:
