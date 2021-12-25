@@ -6,8 +6,8 @@ services:
     restart: always # This will be ignored if we deploy in docker swarm
     environment: 
     - MONGO_DB_HOSTNAME=mongo
-    - MONGO_DB_USERNAME=cat
-    - MONGO_DB_PASSWORD=cat
+    - MONGO_DB_USERNAME=devdb
+    - MONGO_DB_PASSWORD=devdb123
     ports:
       - 8080:8080
     depends_on:
@@ -29,7 +29,7 @@ services:
     image: mongo  #Here image name should be equal to application host environment host name.
     environment:
     - MONGO_INITDB_ROOT_USERNAME=devdb
-    - MONGO_INITDB_ROOT_PASSWORD=devdb1234
+    - MONGO_INITDB_ROOT_PASSWORD=devdb123
     restart: always
     networks:
     - mongonetwork
